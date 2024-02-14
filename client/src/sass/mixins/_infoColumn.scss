@@ -1,0 +1,11 @@
+@mixin infoColumn {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  row-gap: 15px;
+  align-items: flex-start;
+  .title {
+    margin-bottom: 0px;
+  }
+}

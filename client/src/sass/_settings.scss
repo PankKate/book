@@ -1,0 +1,55 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  background-color: #fff;
+  font-family:  'Didot', 'Didot LT STD', 'Hoefler Text', 'Garamond', 'Calisto MT', 'Times New Roman', serif;
+  font-size: 14pt;
+  color: #000;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+input[type=radio]{
+  display: none;
+}
+
+.container{
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 0 30px;
+
+}
+
+.hidden {
+  display: none !important;
+}
+
+.input-err {
+  border: 2px #ff4019 solid !important;
+}
+
+.btn--reset {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}

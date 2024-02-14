@@ -1,0 +1,31 @@
+.bookMain {
+  display: flex;
+  justify-content: flex-start;
+  gap: 100px;
+  padding-left: 140px;
+  .info {
+    @include infoColumn;
+    .title:first-child {
+      font-size: 4.5em;
+    }
+  }
+}
+
+.bookMore {
+  display: flex;
+  justify-content: space-between;
+  background-color: lighten($color: $color-lightGrey, $amount: 20);
+  position: relative;
+  bottom: 110px;
+  z-index: -1;
+  padding: 140px 25px 30vh 2vw;
+
+  .info {
+    @include infoColumn;
+    width: 20vw;
+  }
+  .description {
+    min-width: 20vw;
+    width: 40vw;
+  }
+}

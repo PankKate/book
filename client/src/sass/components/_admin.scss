@@ -1,0 +1,109 @@
+.table {
+  margin: 20px auto 100px auto;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+
+  .row {
+    padding: 20px 0 30px;
+    height: 90px;
+    font-size: 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease-out;
+    border-top: 1px solid rgba(211, 209, 209, 0.685);
+
+    &:hover {
+      height: 25vw;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      &:first-child {
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 25px;
+      }
+      li {
+        margin: 0;
+        font-size: 16px;
+        font-weight: normal;
+        list-style: none;
+        display: inline-block;
+        width: 20%;
+        box-sizing: border-box;
+        padding: 5px 10px;
+      }
+      .editBtns {
+        display: flex;
+        justify-content: flex-end;
+        gap: 6px;
+      }
+    }
+
+    .moreContent {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .desc {
+        min-width: 500px;
+      }
+
+      li {
+        font-size: 14px;
+        margin: 0;
+        padding: 10px 13px;
+        display: block;
+        height: 50px;
+        width: 100%;
+        .moreContentHeader {
+          color: $color-accent;
+          font-weight: 400;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  .title {
+    height: 45px;
+    font-size: 16pt;
+    background-color: $color-grey;
+    display: flex;
+
+    align-items: center;
+
+    li {
+      display: inline-block;
+      width: 20%;
+      color: lighten($color: $color-grey, $amount: 50);
+      padding: 5px 10px;
+    }
+    &:hover {
+      height: 45px;
+    }
+  }
+}
+
+.adminForm {
+  display: flex;
+  justify-content: center;
+
+  form {
+    width: 50vw;
+
+    input {
+      width: 100%;
+      min-height: 30px;
+      height: fit-content;
+      margin-bottom: 10px;
+    }
+    button {
+      float: right;
+    }
+  }
+}
