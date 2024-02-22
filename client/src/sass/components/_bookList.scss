@@ -1,15 +1,10 @@
 .bookList {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  margin-bottom: 60px;
-  
-  .bookList_Content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
-  .title{
+
+  .title {
     align-self: center;
     font-size: 24pt;
   }
@@ -18,7 +13,6 @@
     flex-wrap: wrap;
     gap: 30px;
     row-gap: 60px;
-    align-items: center;
     justify-content: center;
   }
 }

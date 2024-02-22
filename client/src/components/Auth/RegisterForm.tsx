@@ -1,30 +1,16 @@
 import { gql, useMutation } from "@apollo/client";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IReg } from "../../types/types";
+import { ADD_USER } from "../../requests/auth_req";
 
-interface IReg {
-  login: string;
-  email: string;
-  password: string;
-}
 
 const initState: IReg = {
   login: "",
   email: "",
   password: "",
 };
-const ADD_USER = gql`
-  mutation AddUser($login: String!, $password: String!, $email: String!) {
-    addUser(login: $login, password: $password, email: $email) {
-      success
-      data {
-        login
-        password
-        email
-      }
-    }
-  }
-`;
+
 
 function RegisterForm({
   getAuth,
@@ -36,8 +22,8 @@ function RegisterForm({
   const [reg, setReg] = useState<IReg>(initState);
   const [isFormValid, setIsFormValid] = useState(false);
   const [isEmailAvail, setIsEmailAvail] = useState(false);
+  const [addUser] = useMutation(ADD_USER);
 
-  const [addUser, { data, loading, error }] = useMutation(ADD_USER);
   const navigate = useNavigate();
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -45,12 +31,11 @@ function RegisterForm({
     setIsFormValid(reg.login !== "" && reg.email !== "" && reg.password !== "");
   };
 
-  const submitHandler = (e: SubmitEvent) => {
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addUser({
       variables: { login: reg.login, password: reg.password, email: reg.email },
     }).then((res) => {
-    
       if (res.data.addUser.success === true) {
         localStorage.setItem("login", res.data.addUser.data.login);
         localStorage.setItem("email", res.data.addUser.data.email);

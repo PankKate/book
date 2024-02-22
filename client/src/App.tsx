@@ -21,7 +21,7 @@ function App() {
     setLogin(localStorage.getItem("login"));
     setEmail(localStorage.getItem("email"));
   }
-  
+
   return (
     <ApolloProvider client={client}>
       <Navbar login={login} email={email} />

@@ -8,6 +8,7 @@ function Navbar({
   login: string | null;
   email: string | null;
 }): JSX.Element {
+  
   const [searchValue, setSearchValue] = useState<string>("");
 
   const imageBasePath =

@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import {
-  AdminBookList,
-  AddBook,
-  EditBook,
-} from "../components/Admin/AdminBookList";
+import { useState } from "react";
+import AddBook from "../components/Admin/AddBook";
+import AdminTable from "../components/Admin/AdminTable";
+import EditBook from "../components/Admin/EditBook";
+import { Book_FullData } from "../types/types";
 
-function Admin() {
-  const [editing, setEditing] = useState(null);
+
+
+function Admin():JSX.Element {
+  const [editing, setEditing] = useState<null|Book_FullData>(null);
   return (
-    <div className="container">
+    <main className="container">
       <div className="adminForm">
         {editing ? (
           <EditBook book={editing} onFinish={() => setEditing(null)} />
@@ -16,8 +17,8 @@ function Admin() {
           <AddBook />
         )}
       </div>
-      <AdminBookList onEdit={setEditing} />
-    </div>
+      <AdminTable onEdit={setEditing} />
+    </main>
   );
 }
 

@@ -2,9 +2,9 @@ import React from "react";
 import CategoriesBlock from "../components/Category/CategoriesBlock";
 import { useParams } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
-import BookSlide from "../components/BookSlide";
+import BookSlide from "../components/BookList/BookTile";
 import { Book } from "../types/types";
-import BooksContainer from "../components/BooksContainer";
+import BooksContainer from "../components/BookList/BooksContainer";
 
 const GET_GENRE = gql`
   query BooksGenre($genre: String) {
@@ -29,7 +29,7 @@ function BookList() {
   return (
     <div className="container">
       <CategoriesBlock />
-      <BooksContainer books={data.booksGenre} header={String(genre)}/>
+      <BooksContainer books={data.booksGenre} header={String(genre)} />
     </div>
   );
 }

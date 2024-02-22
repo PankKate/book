@@ -1,25 +1,14 @@
-import { gql, useLazyQuery } from "@apollo/client";
-import React, { ChangeEvent, useState } from "react";
+import {  useLazyQuery } from "@apollo/client";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ILogin } from "../../types/types";
+import { GET_USER } from "../../requests/auth_req";
 
-interface IReg {
-  email: string;
-  password: string;
-}
-
-const initState: IReg = {
+const initState: ILogin = {
   email: "",
   password: "",
 };
-const GET_USER = gql`
-  query Query($email: String!, $password: String!) {
-    userID(email: $email, password: $password) {
-      login
-      password
-      email
-    }
-  }
-`;
+
 
 function RegisterForm({
   getAuth,
@@ -28,11 +17,11 @@ function RegisterForm({
   getAuth(): void;
   setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [reg, setReg] = useState<IReg>(initState);
+  const [reg, setReg] = useState<ILogin>(initState);
   const [isFormValid, setIsFormValid] = useState(false);
   const [isDataTrue, setIsDataTrue] = useState(true);
 
-  const [checkForm, { loading }] = useLazyQuery(GET_USER);
+  const [checkForm] = useLazyQuery(GET_USER);
   const navigate = useNavigate();
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -40,7 +29,7 @@ function RegisterForm({
     setIsFormValid(reg.email !== "" && reg.password !== "");
   };
 
-  const submitHandler = (e: SubmitEvent) => {
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     checkForm({ variables: { email: reg.email, password: reg.password } }).then(
       (res) => {

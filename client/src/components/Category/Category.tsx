@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-function Category({title, genre, changeCategory}: {title:string, genre:string, changeCategory: (title: string) => void}) {
+function Category({title, genre, changeCategory}: {title:string, genre:string, changeCategory: (title: string) => void}):JSX.Element {
     const navigate = useNavigate();
     return (
         <div onClick={()=> navigate(`/bookList/${genre}`)}>

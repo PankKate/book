@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useState } from "react";
-import { Book } from "../../types/types";
+import { ChangeEvent, FormEvent, useState } from "react";
+import {Book_MainData, adminFormProps } from "../../types/types";
 
 function AdminForm({
   initName = '',
@@ -12,8 +12,8 @@ function AdminForm({
   initPaperback = '',
   disabled,
   onSubmit,
-}) {
-  const initState: Book = {
+}: adminFormProps) {
+  const initState: Book_MainData = {
     name: initName ,
     year: initYear ,
     genre: initGenre ,
@@ -25,78 +25,32 @@ function AdminForm({
     paperback: initPaperback ,
   };
 
-  const [reg, setReg] = useState<Book>(initState);
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [reg, setReg] = useState<Book_MainData>(initState);
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setReg((pre) => ({ ...pre, [e.target.name]: e.target.value }));
     setIsFormValid(
       reg.name !== "" && reg.author !== "" && reg.description !== "" && reg.genre !== ""
     );
-    
   };
 
-  return (
-    <form onSubmit={(e)=>{
+  function submitForm(e: FormEvent<HTMLFormElement>):void{
       e.preventDefault();    
       onSubmit(reg)
-      setReg(initState)}}>
+      setReg(initState)
+  }
+
+  return (
+    <form onSubmit={(e)=>submitForm(e)}>
+      {Object.keys(reg).map((key:string)=> 
       <input
-      disabled={disabled}
-        name="name"
-        placeholder="title"
-        value={reg.name}
-        onChange={inputHandler}
-      ></input>
-      <input
-      disabled={disabled}
-        name="author"
-        placeholder="author"
-        value={reg.author}
-        onChange={inputHandler}
-      ></input>
-      <input
-      disabled={disabled}
-        name="genre"
-        placeholder="genre"
-        value={reg.genre}
-        onChange={inputHandler}
-      ></input>
-      <input
-      disabled={disabled}
-        name="year"
-        placeholder="year"
-        value={reg.year}
-        onChange={inputHandler}
-      ></input>
-      <input
-      disabled={disabled}
-        name="description"
-        placeholder="description"
-        value={reg.description}
-        onChange={inputHandler}
-      ></input>
-      <input
-      disabled={disabled}
-        name="editors"
-        placeholder="editors"
-        value={reg.editors}
-        onChange={inputHandler}
-      ></input>
-      <input
-      disabled={disabled}
-        name="language"
-        placeholder="language"
-        value={reg.language}
-        onChange={inputHandler}
-      ></input>
-      <input
-      disabled={disabled}
-        name="paperback"
-        placeholder="paperback"
-        value={reg.paperback}
-        onChange={inputHandler}
-      ></input>
+        key={key}
+        name={key}
+        placeholder={key}
+        value={reg[key]}
+        onChange={inputHandler}/>
+        )}
 
       <button type="submit" className="form-button" disabled={!isFormValid || disabled}>
         Submit
